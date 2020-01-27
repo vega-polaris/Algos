@@ -1,4 +1,4 @@
-const arr = [
+arr = [
     'p',
     'e',
     'r',
@@ -29,16 +29,22 @@ function reverseWords(arr) {
     let reversedArray = []
     arr.forEach((letter, idx) => {
         // when the letter is ' ', unshift the string into an array and start a new string
-        if (letter === '  ' || idx === arr.length - 1) {
+        if (letter === '  ') {
             // create this array with all the elements in the other two arrays
-            reversedArray = [...tempArray, ' ', ...reversedArray]
+            // check for first word in array
+            if (reversedArray[0]) {
+                tempArray.push(letter)
+            }
+            reversedArray = [...tempArray, ...reversedArray]
             tempArray = []
+        } else if (idx === arr.length - 1) {
+            tempArray.push(letter, '  ')
         } else {
             tempArray.push(letter)
         }
     })
 
-    return reversedArray.slice(0, reversedArray.length - 1)
+    return [...tempArray, ...reversedArray]
 }
 
 reverseWords(arr)
