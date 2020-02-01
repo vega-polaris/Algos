@@ -2,58 +2,29 @@
  */
 
 const attendees = [
-    { name: 'Dan', nyPrice: 100, sfPrice: 50 },
-    { name: 'Emma', nyPrice: 0, sfPrice: 700 },
-    { name: 'Rose', nyPrice: 720, sfPrice: 0 },
-    { name: 'Jane', nyPrice: 500, sfPrice: 500 },
-    { name: 'Grace', nyPrice: 200, sfPrice: 100 },
-]
+  { name: "Dan", nyPrice: 100, sfPrice: 50 },
+  { name: "Emma", nyPrice: 0, sfPrice: 700 },
+  { name: "Rose", nyPrice: 720, sfPrice: 0 },
+  { name: "Jane", nyPrice: 500, sfPrice: 500 },
+  { name: "Grace", nyPrice: 200, sfPrice: 100 },
+  { name: "Florence", nyPrice: 500, sfPrice: 800 },
+  { name: "Vanessa", nyPrice: 400, sfPrice: 100 }
+];
 
 const distributeDevs = attendees => {
-    // how many should be in each place?
-    const average = Math.round(attendees.length / 2)
-    let nyDevs = []
-    let sfDevs = []
-    // loop through whole array and send people to their cheaper place
-    attendees.forEach(attendee => {
-        if (attendee.nyPrice < attendee.sfPrice) {
-            attendee.difference = attendee.sfPrice - attendee.nyPrice
-            nyDevs.push(attendee)
-        } else {
-            attendee.difference = attendee.nyPrice - attendee.sfPrice
-            sfDevs.push(attendee)
-        }
-    })
-    // if one town has too many...
-    if (nyDevs.length > average) {
-        // sort by the difference key and move the spare devs to the other location
-        nyDevs = sort(nyDevs)
-        // how many spares?
-        const NumToMove = nyDevs.length - average
-        sfDevs = [...sfDevs, ...nyDevs.splice(average - 1, NumToMove)]
-    } else if (sfDevs.length > average) {
-        sfDevs = sort(sfDevs)
-        // how many spares?
-        const NumToMove = sfDevs.length - average
-        nyDevs = [...nyDevs, ...sfDevs.splice(average - 1, NumToMove)]
-    }
-}
+  attendees.forEach(attendee => {
+    attendee.difference = attendee.sfPrice - attendee.nyPrice;
+  });
+  // first sort the array in place according to the movability. Choose one of the towns as positive, the other as negative.
+  attendees.sort((attendeeA, attendeeB) => {
+    return attendeeA.difference - attendeeB.difference;
+  });
+  console.log({ attendees });
+  // how many should be in each place?
+  const average = Math.round(attendees.length / 2);
+  const sfDevs = attendees.splice(0, average);
+  const nyDevs = attendees;
+  return [nyDevs, sfDevs];
+};
 
-function sort(values) {
-    var origValues = values.slice()
-    var length = origValues.length - 1
-    do {
-        var swapped = false
-        for (var i = 0; i < length; ++i) {
-            if (origValues[i].difference > origValues[i + 1].difference) {
-                var temp = origValues[i]
-                origValues[i] = origValues[i + 1]
-                origValues[i + 1] = temp
-                swapped = true
-            }
-        }
-    } while (swapped === true)
-    return origValues
-}
-
-distributeDevs(attendees)
+console.log(distributeDevs(attendees));
