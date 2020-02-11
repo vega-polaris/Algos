@@ -18,16 +18,10 @@ function validAnagram(str1, str2) {
       list1[char] = 1;
     }
   }
-  const list2 = {};
   for (let char of str2) {
-    if (list2[char]) {
-      list2[char]++;
+    if (list1[char]) {
+      list1[char]--;
     } else {
-      list2[char] = 1;
-    }
-  }
-  for (let char in list2) {
-    if (list1[char] !== list2[char]) {
       return false;
     }
   }
