@@ -1,5 +1,5 @@
 const subArraySum = (intArr, n) => {
-  let max = null;
+  let max = -Infinity;
   let startWindow = 0;
   let endWindow = n;
   let arrSlice = intArr.slice(startWindow, endWindow);
