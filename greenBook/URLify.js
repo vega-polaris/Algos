@@ -4,6 +4,7 @@ const URLify = function(string, length) {
   // use a flag.
   let postSpace = false;
   // loop through string, storing every letter
+  // O(n)
   for (let i = 0; i < length; i++) {
     //Switch flag to true when hitting a space. When hitting a letter and the flag is true, join a %20 before the letter.
     if (string[i] === ' ') {
@@ -19,3 +20,8 @@ const URLify = function(string, length) {
   }
   return urlString;
 };
+
+/*
+time = O(n);
+space = O(n);
+/*
