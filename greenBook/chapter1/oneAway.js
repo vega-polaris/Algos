@@ -8,7 +8,7 @@ pale, bake => false
 */
 
 const oneAway = function(strOne, strTwo) {
-  // if lengths are different, find character that's different and compare strings without it. 
+  // if lengths are different, find character that's different and compare strings without it.
   if (strOne.length !== strTwo.length) {
     if (Math.abs(strOne.length - strTwo.length) > 1) return false;
   }
@@ -21,10 +21,10 @@ const oneAway = function(strOne, strTwo) {
     if (strOne[i] !== strTwo[i]) {
       if (oneDone === false) oneDone = true;
       else return false;
-    } 
+    }
   }
   return true;
-}
+};
 
 /*
 time = O(n);
