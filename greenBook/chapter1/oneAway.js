@@ -9,16 +9,16 @@ pale, bake => false
 
 const oneAway = function(strOne, strTwo) {
   // if lengths are different, find character that's different and compare strings without it.
-  // O(1) time, O(1) space
-  if (strOne.length > strTwo.length) {
-    return handleLongerString(strOne, strTwo);
-  } else if (strTwo.length > strOne.length) {
-    return handleLongerString(strTwo, strOne);
+
+  if (strOne.length !== strTwo.length) {
+    if (Math.abs(strOne.length - strTwo.length) > 1) return false;
+
   }
 
   // if lengths are identical, declare a flag
   let oneDone = false;
   // start looping.
+
   // O(n)time, O(1) space
   for (let i = 0; i < strOne.length; i++) {
     // when meeting one unequal character
@@ -29,6 +29,7 @@ const oneAway = function(strOne, strTwo) {
   }
   return true;
 };
+
 
 const handleLongerString = function(longString, shortString) {
   // O(n) time, O(1) space
