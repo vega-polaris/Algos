@@ -12,3 +12,23 @@ const subArraySum = (intArr, n) => {
   }
   return max;
 };
+
+/*
+ * REFACTORED TO USE SLIDING WINDOW
+ */
+
+const subArraySumRefac = (intArr, n) => {
+  let startIdx = 0;
+  let endIdx = n - 1;
+  let maxSum = intArr
+    .slice(startIdx, endIdx + 1)
+    .reduce((acc, num) => acc + num);
+  let tempSum = maxSum;
+  while (endIdx + 1 <= intArr.length) {
+    startIdx++;
+    endIdx++;
+    tempSum = tempSum - intArr[startIdx - 1] + intArr[endIdx];
+    if (tempSum > maxSum) maxSum = tempSum;
+  }
+  return maxSum;
+};
