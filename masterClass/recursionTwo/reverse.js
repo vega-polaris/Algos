@@ -3,7 +3,6 @@
 // reverse('rithmschool') // 'loohcsmhtir'
 
 function reverse(string) {
-  let reverseString = '';
   let strCopy = string;
   const reverseHelp = string => {
     if (string.length < 1) return '';

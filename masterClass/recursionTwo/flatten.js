@@ -4,7 +4,6 @@ function flatten(multiDimArr) {
     if (Array.isArray(el)) {
       flatArr = flatArr.concat(flatten(el));
     } else flatArr.push(el);
-    console.log({ flatArr });
   }
   return flatArr;
 }

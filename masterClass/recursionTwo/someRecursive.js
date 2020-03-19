@@ -11,5 +11,5 @@ function someRecursive(array, callback) {
   const coArray = array.slice();
   if (coArray.length < 1) return false;
   if (callback(coArray[0])) return true;
-  else return someRecursive(array.slice(1), callback);
+  return someRecursive(array.slice(1), callback);
 }
