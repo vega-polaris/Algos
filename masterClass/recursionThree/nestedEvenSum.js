@@ -1,17 +1,16 @@
 function nestedEvenSum(obj) {
-  let sum = 0;
-  function iterate(obj) {
-    for (const key in obj) {
-      let curVal = obj[key];
-      if (typeof curVal === 'number' && curVal % 2 === 0) {
-        sum += curVal;
-      } else if (typeof curVal === 'object' && curVal !== null) {
-        iterate(curVal);
-      }
-    }
-  }
-  iterate(obj);
-  return sum;
+  // put all values in an array
+  let valsArr = Object.values(obj);
+  // use nestedEvenSum on every value (map)
+  return valsArr
+    .map(val => {
+      if (typeof val === 'number' && val % 2 === 0) {
+        return val;
+      } else if (typeof val === 'object' && val !== null) {
+        return nestedEvenSum(val);
+      } else return 0;
+    })
+    .reduce((accum, val) => accum + val, 0);
 }
 
 var obj1 = {
