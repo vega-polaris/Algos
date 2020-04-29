@@ -18,6 +18,7 @@ const subArraySum = (intArr, n) => {
  */
 
 const subArraySumRefac = (intArr, n) => {
+  if (intArr.length < n) return null;
   let startIdx = 0;
   let endIdx = n - 1;
   let maxSum = intArr
