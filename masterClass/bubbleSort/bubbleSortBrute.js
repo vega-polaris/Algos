@@ -1,8 +1,16 @@
+/* time complexity O(n^2) (worst case)
+but when data is almost sorted, closer to O(n) - so this may be a good candidate if we know data is almost sorted. */
+
 bubbleSort = (arr) => {
+  let swapped = false;
   for (let i = arr.length; i > -1; i--) {
     for (let j = 0; j < i - 1; j++) {
-      if (arr[j] > arr[j + 1]) swap(arr, j, j + 1);
+      if (arr[j] > arr[j + 1]) {
+        swap(arr, j, j + 1);
+        swapped = true;
+      }
     }
+    if (!swapped) return arr;
   }
   return arr;
 };
