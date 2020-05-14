@@ -6,7 +6,7 @@ sumZero([-2, 0, 1, 3]) // undefined
 
 */
 
-const sumZero = intArr => {
+const sumZero = (intArr) => {
   let startPointer = 0;
   let endPointer = intArr.length - 1;
   while (startPointer < endPointer) {
@@ -21,4 +21,4 @@ const sumZero = intArr => {
   }
 };
 
-console.log(sumZero([-3, -2, -1, 0, 1, 2, 4]));
+sumZero([-3, -2, -1, 0, 1, 2, 4]);

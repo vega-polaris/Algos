@@ -8,12 +8,12 @@ const obj = {
         info: 'bar',
         moreInfo: {
           evenMoreInfo: {
-            weMadeIt: 'baz'
-          }
-        }
-      }
-    }
-  }
+            weMadeIt: 'baz',
+          },
+        },
+      },
+    },
+  },
 };
 
 function collectStrings(obj) {
@@ -28,4 +28,4 @@ function collectStrings(obj) {
   return stringArr;
 }
 
-console.log(collectStrings(obj));
+collectStrings(obj);
