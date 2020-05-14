@@ -26,3 +26,5 @@ let selectSort = function (arr) {
   }
   return arr;
 };
+
+selectSort([1, 9, 3, 5, 52352, 2452, 686, 135]);
