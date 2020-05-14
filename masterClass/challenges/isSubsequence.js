@@ -11,7 +11,7 @@ Space O(1)
 
 */
 
-const isSubsequence = function(substring, string) {
+const isSubsequence = function (substring, string) {
   let substrPointer = 0;
   let strPointer = 0;
   while (substrPointer < substring.length) {
@@ -27,4 +27,4 @@ const isSubsequence = function(substring, string) {
   return true;
 };
 
-console.log(isSubsequence('abc', 'acb'));
+isSubsequence('abc', 'acb');

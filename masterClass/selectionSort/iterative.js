@@ -5,7 +5,6 @@ let selectSort = function (arr) {
   let fastIdx = 1;
   let foundSmaller = false;
   while (slowIdx < arr.length) {
-    console.log({ minVal });
     while (fastIdx < arr.length) {
       let fastVal = arr[fastIdx];
       if (fastVal < minVal) {
