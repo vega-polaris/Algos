@@ -25,9 +25,14 @@ const swap = function (array, idx1, idx2) {
 };
 
 const quickSort = function (array, startIdx = 0, endIdx = array.length - 1) {
+  // base case - start and end indexes are meeting
   if (startIdx < endIdx) {
+    // recursive case
+    // find our first swap spot
     let swapIdx = pivotHelper(array, startIdx, endIdx);
+    // do the whole thing on the left side of the array till swap spot
     quickSort(array, startIdx, swapIdx);
+    // do the same thing on the right side of the array
     quickSort(array, swapIdx + 1, endIdx);
   }
   return array;
