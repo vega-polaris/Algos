@@ -25,9 +25,10 @@ const swap = function (array, idx1, idx2) {
 };
 
 const quickSort = function (array, startIdx = 0, endIdx = array.length - 1) {
-  if (startIdx >= endIdx) return array;
-  let swapIdx = pivotHelper(array, startIdx, endIdx);
-  quickSort(array, startIdx, swapIdx);
-  quickSort(array, swapIdx + 1, endIdx);
+  if (startIdx < endIdx) {
+    let swapIdx = pivotHelper(array, startIdx, endIdx);
+    quickSort(array, startIdx, swapIdx);
+    quickSort(array, swapIdx + 1, endIdx);
+  }
   return array;
 };
