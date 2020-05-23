@@ -32,10 +32,7 @@ const radixSort = function (numsArr) {
   // loop this number of times
   for (let i = 0; i < loops; i++) {
     // create a bucket array for each digit
-    let buckets = new Array(10);
-    for (let i = 0; i < buckets.length; i++) {
-      buckets[i] = [];
-    }
+    let buckets = Array.from({ length: 10 }, () => []);
     // loop through the nums array, looking at the ith digit and pushing each num into its bucket.
     numsArr.forEach((num) => {
       let ithDigit = getDigit(num, i);
@@ -49,3 +46,7 @@ const radixSort = function (numsArr) {
 };
 
 radixSort(numsArr);
+
+// BIG O
+// Time O (n * k), where k is the length of the longest digit. But if the numbers are all unique, it's possible (because of the way computers store number) that k will actually equal log n.
+//
