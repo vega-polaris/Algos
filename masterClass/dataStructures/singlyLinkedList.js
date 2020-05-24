@@ -14,6 +14,7 @@ class SinglyLinkedList {
     this.tail = null;
   }
   // create a new node and add it at the end of the list. If the list is empty, it's also the head.
+  // time complexity: O(1)
   push(data) {
     this.length++;
     let newNode = new Node(data);
@@ -29,6 +30,7 @@ class SinglyLinkedList {
     return this;
   }
   // remove from the end of the list
+  // time complexity: O(N)
   pop() {
     // if there are no nodes, return undefined.
     if (!this.head) return;
@@ -52,6 +54,7 @@ class SinglyLinkedList {
     return curNode;
   }
   // remove current head
+  // time complexity: O(1)
   shift() {
     // if there are no nodes, return undefined
     if (!this.head) return;
@@ -70,6 +73,7 @@ class SinglyLinkedList {
     return headToRemove;
   }
   // add a node to the beginning of the list
+  // time complexity: O(1)
   unshift(data) {
     let newNode = new Node(data);
     this.length++;
@@ -79,6 +83,7 @@ class SinglyLinkedList {
     return this;
   }
   // retrive a node by its position in the list
+  // time complexity: O(N)
   get(idx) {
     // if idx is less than zero or greater than or equal to the length of the list, return null
     if (idx < 0 || idx >= this.length) return null;
@@ -91,6 +96,7 @@ class SinglyLinkedList {
     return curNode;
   }
   // change the value of the node in the input index to the input value
+  // time complexity: O(N)
   set(idx, newData) {
     let nodeToSet = this.get(idx);
     if (!nodeToSet) return false;
@@ -98,6 +104,7 @@ class SinglyLinkedList {
     return true;
   }
   // add node in a specified position
+  // time complexity: O(1)
   insert(idx, data) {
     // if idx is more than length or less than zero, return false
     if (idx < 0 || idx > this.length) return false;
@@ -113,6 +120,7 @@ class SinglyLinkedList {
     return true;
   }
   // remove node at an index
+  // time complexity: O(N) - because we could be using this.pop
   remove(idx) {
     if (idx < 0 || idx > this.length) return false;
     if (idx === this.length - 1) return !!this.pop();
