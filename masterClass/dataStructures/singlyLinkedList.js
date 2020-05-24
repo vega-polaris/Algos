@@ -103,6 +103,7 @@ class SinglyLinkedList {
     if (idx < 0 || idx > this.length) return false;
     if (idx === this.length) return !!this.push(data);
     if (idx === 0) return !!this.unshift(data);
+
     const newNode = new Node(data);
     this.length++;
     const precedingNode = this.get(idx - 1);
@@ -111,6 +112,54 @@ class SinglyLinkedList {
     precedingNode.next = newNode;
     return true;
   }
+  // remove node at an index
+  remove(idx) {
+    if (idx < 0 || idx > this.length) return false;
+    if (idx === this.length - 1) return !!this.pop();
+    if (idx === 0) return !!this.shift();
+
+    this.length--;
+    const precedingNode = this.get(idx - 1);
+    const removedNode = precedingNode.next;
+    const followingNode = removedNode.next;
+    precedingNode.next = followingNode;
+    removedNode.next = null;
+    return removedNode;
+  }
+  // print whole list - for dev purposes
+  print() {
+    let curNode = this.head;
+    while (curNode) {
+      console.log(curNode);
+      curNode = curNode.next;
+    }
+  }
+
+  reverse() {
+    // create a var called node and init it to the head
+    // swap head and tail
+    let curNode = this.head;
+    this.head = this.tail;
+    this.tail = curNode;
+
+    // create a var called next
+    let next = null;
+    // create a var called prev
+    let prev = null;
+
+    // loop through list
+    while (curNode) {
+      // set next to be the next property on node
+      next = curNode.next;
+      // set the next prop on the node to be whatever prev is
+      curNode.next = prev;
+      // set prev to be the val of the node var
+      prev = curNode;
+      // set the node to the value of next var
+      curNode = next;
+    }
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -118,13 +167,17 @@ list.push('is this working?');
 list.push('I think it is');
 list.push('I really think so');
 list.push('come on please work');
-list.pop();
-list.pop();
+// list.pop();
+// list.pop();
 // list.pop();
 // list.shift();
-list.unshift('This is definitely working');
-list.set(1, 'Emma-wa tensai-desu!');
-list.get(1);
-list.insert(3, 'sou desu yo!');
-// console.log('new idx 2', list.get(2));
-list.insert(0, 'this is all my Japanese');
+// list.unshift("This is definitely working");
+// list.set(1, 'Emma-wa tensai-desu!');
+// list.get(1);
+// list.insert(3, 'sou desu yo!');
+// list.insert(0, 'this is all my Japanese');
+// list.print();
+// list.remove(2)
+// list.print();
+list.reverse();
+list.print();
