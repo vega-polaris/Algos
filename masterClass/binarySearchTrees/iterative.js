@@ -7,8 +7,8 @@ class Node {
 }
 
 class BST {
-  constructor(root) {
-    this.root = root;
+  constructor() {
+    this.root = null;
   }
   insert(val) {
     const newNode = new Node(val);
@@ -64,13 +64,52 @@ class BST {
       }
     }
   }
+
+  bfs() {
+    const visited = [];
+    const q = [this.root];
+    while (q.length) {
+      let deq = q.shift();
+      if (deq.left) q.push(deq.left);
+      if (deq.right) q.push(deq.right);
+      visited.push(deq.val);
+    }
+    return visited;
+  }
+
+  dfsPreOrder(node = this.root, visited = []) {
+    visited.push(node.val);
+    if (node.left) this.dfsPreOrder(node.left, visited);
+    if (node.right) this.dfsPreOrder(node.right, visited);
+    return visited;
+  }
+
+  dfsPostOrder(node = this.root, visited = []) {
+    if (node.left) this.dfsPostOrder(node.left, visited);
+    if (node.right) this.dfsPostOrder(node.right, visited);
+    visited.push(node.val);
+    return visited;
+  }
+
+  dfsInOrder(node = this.root, visited = []) {
+    if (node.left) this.dfsInOrder(node.left, visited);
+    visited.push(node.val);
+    if (node.right) this.dfsInOrder(node.right, visited);
+    return visited;
+  }
 }
 
-let tree = new BST();
+const tree = new BST();
 tree.root = new Node(10);
 tree.insert(5);
 tree.insert(3);
 tree.insert(28);
 tree.insert(15);
 tree.insert(-35);
-tree.find(35);
+// tree.find(35);
+tree.insert(4);
+tree.insert(17);
+tree.insert(8);
+tree.insert(32);
+// console.log(tree.bfs());
+console.log(tree.dfsInOrder());

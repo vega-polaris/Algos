@@ -1,3 +1,5 @@
+/* There is more than one way to make a tree. The first method in this file is what's taught at Colt Steele's JavaScript Algorithms and Data Structires Masterclass Udemy course. The one underneath is what's taught at Fullstack Academy and is my preferred method because it's consistent with my perception of the tree structure as persisting for every node, i.e. every node is the root of its own tree. */
+
 class BST {
   constructor(val) {
     this.val = val;
@@ -37,6 +39,40 @@ class BST {
       else return false;
     }
   }
+
+  bfs() {
+    const q = [this];
+    const visited = [];
+    while (q.length) {
+      // let deq = q.shift();
+      let deq = q.shift();
+      visited.push(deq.val);
+      if (deq.left) q.push(deq.left);
+      if (deq.right) q.push(deq.right);
+    }
+    return visited;
+  }
+
+  dfsPreOrder(visited = []) {
+    visited.push(this.val);
+    if (this.left) this.left.dfsPreOrder(visited);
+    if (this.right) this.right.dfsPreOrder(visited);
+    return visited;
+  }
+
+  dfsPostOrder(visited = []) {
+    if (this.left) this.left.dfsPostOrder(visited);
+    if (this.right) this.right.dfsPostOrder(visited);
+    visited.push(this.val);
+    return visited;
+  }
+
+  dfsInOrder(visited = []) {
+    if (this.left) this.left.dfsInOrder(visited);
+    visited.push(this.val);
+    if (this.right) this.right.dfsInOrder(visited);
+    return visited;
+  }
 }
 
 const tree = new BST(17);
@@ -46,5 +82,9 @@ tree.insert(10);
 tree.insert(83);
 tree.insert(25);
 tree.insert(28);
-tree.insert(75);
+tree.insert(5);
+tree.insert(94);
+tree.insert(20);
+
 tree.find(0);
+console.log(tree.dfsInOrder());
