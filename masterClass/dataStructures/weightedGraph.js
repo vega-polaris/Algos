@@ -1,19 +1,21 @@
 // naive, inefficient implementation of priority queue - will be upgraded later
-class PriorityQueue {
-  constructor() {
-    this.values = [];
-  }
-  nq(val, priority) {
-    this.values.push({ val, priority });
-    this.sort();
-  }
-  dq() {
-    return this.values.shift();
-  }
-  sort() {
-    this.values.sort((a, b) => a.priority - b.priority);
-  }
-}
+// class PriorityQueue {
+//   constructor() {
+//     this.values = [];
+//   }
+//   nq(val, priority) {
+//     this.values.push({ val, priority });
+//     this.sort();
+//   }
+//   dq() {
+//     return this.values.shift();
+//   }
+//   sort() {
+//     this.values.sort((a, b) => a.priority - b.priority);
+//   }
+// }
+
+import PriorityQueue from './maxBinaryHeap';
 
 // this is an UNDIRECTED graph!
 class WeightedGraph {
@@ -43,7 +45,7 @@ class WeightedGraph {
     // initialized to infinity
     const priorityQ = new PriorityQueue();
     Object.entries(distances).forEach((vertDistancePair) => {
-      priorityQ.nq(...vertDistancePair);
+      priorityQ.insert(...vertDistancePair);
     });
     const previous = this.createDict(originVal);
     while (priorityQ.values.length) {
