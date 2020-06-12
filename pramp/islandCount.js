@@ -14,7 +14,7 @@ const binaryMatrix = [
   [0, 0, 1, 1, 1],
   [1, 0, 0, 1, 0],
   [0, 1, 1, 0, 0],
-  [1, 0, 1, 0, 1]
+  [1, 0, 1, 0, 1],
 ];
 const checkAround = (rowIdx, columnIdx, matrix) => {
   if (rowIdx - 1 >= 0 && matrix[rowIdx - 1][columnIdx] === 1) {
@@ -38,7 +38,7 @@ const checkAround = (rowIdx, columnIdx, matrix) => {
   }
 };
 
-const findIslands = binaryMatrix => {
+const findIslands = (binaryMatrix) => {
   // keep track of sum
   let count = 0;
   // double loop, once through outer array, once through each of inner.
@@ -59,4 +59,4 @@ const findIslands = binaryMatrix => {
   return count;
 };
 
-console.log(findIslands(binaryMatrix));
+findIslands(binaryMatrix);
