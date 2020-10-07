@@ -66,6 +66,15 @@ class LinkedList {
     node.next = null;
     return this;
   }
+  removeNodeByIdx(idx) {
+    let curNode = this.head;
+    while (curNode && idx > 0) {
+      idx--;
+      curNode = curNode.next;
+    }
+    if (!curNode) return null;
+    else this.removeNode(curNode);
+  }
 
   printList() {
     let curNode = this.head;
