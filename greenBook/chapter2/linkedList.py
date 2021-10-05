@@ -58,10 +58,9 @@ class DoubleLinkedList:
             print("list is empty")
         else:
             cur_node = self.head
-            while cur_node.next:
+            while cur_node:
                 print(cur_node.value)
-                cur_node = cur_node.next
-            print(cur_node.value)
+                cur_node = getattr(cur_node, "next", None)
 
     def remove_dupes_linear_time(self):
         # memoise values
@@ -70,7 +69,6 @@ class DoubleLinkedList:
             raise Exception("List is empty!")
         cur_node = self.head
         while cur_node:
-            print(f"cur node value: {cur_node.value}")
             next_node = cur_node.next
             if cur_node.value not in memo.keys():
                 memo[cur_node.value] = True
@@ -101,12 +99,9 @@ class DoubleLinkedList:
             slow_arrow = self.head
             fast_arrow = slow_arrow.next
             while slow_arrow.next != self.tail:
-                print(f"slow arrow: {slow_arrow.value}")
-                print(f"fast arrow: {fast_arrow.value}")
                 # but if the slow arrow is currently the penultimate node, no need to increment more
                 # if we are in the middle of the list...
                 if fast_arrow.next is not None:
-                    print(f"fast arrow has next:{fast_arrow.next}")
                     next_fast = fast_arrow.next
                     # we are in middle of list and the arrow point at identical values
                     if fast_arrow.value == slow_arrow.value:
@@ -115,7 +110,6 @@ class DoubleLinkedList:
                     # either way keep looping
                     fast_arrow = next_fast
                 else:
-                    print("fast arrow at end")
                     # fast arrow reached the end
                     # reassign slow arrow
                     slow_arrow = slow_arrow.next
@@ -125,38 +119,43 @@ class DoubleLinkedList:
                 self.remove_node(fast_arrow)
         else:
             return
+    
+    def move_node_to_end(self, node):
+        next_node = getattr(node, "next", None)
+        prev_node = getattr(node, "previous", None)
+        if prev_node:
+            prev_node.next = next_node
+        if next_node:
+            next_node.previous = prev_node
+        self.tail.next = node
+        node.next = None
+        self.tail = node
+
+    def partition(self, partition):
+        # iterate through the list
+        cur_node = self.head
+        while cur_node:
+            visited = getattr(cur_node, "visited", False)
+            if visited:
+                break
+            # mark every element you visited
+            setattr(cur_node, "visited", True)
+            # everytime the value is >= partition, move that value to the end of the list
+            next_node = getattr(cur_node, "next", None)
+            if cur_node.value >= partition:
+                self.move_node_to_end(cur_node)
+            cur_node = next_node
+        self.print_list()
 
 
 new_list = DoubleLinkedList()
-# new_list.print_list()
 new_list.add_node(3)
 new_list.add_node(5)
-new_list.add_node(3)
-new_list.add_node(4)
-new_list.add_node(98)
-new_list.add_node(63)
-new_list.add_node(63)
+new_list.add_node(8)
+new_list.add_node(5)
+new_list.add_node(10)
+new_list.add_node(2)
+new_list.add_node(1)
 
-new_list.print_list()
-new_list.remove_dupes_linear_space()
-print("after de-duping:")
-new_list.print_list()
-new_list.remove_node_by_idx(2)
-print("list after removing 2nd idx:")
-new_list.print_list()
+new_list.partition(5)
 
-# new_list.remove_node(new_list.head)
-# print("list after decapitation:")
-# new_list.print_list()
-# print(f"head: {new_list.head.value}")
-# print(f"tail: {new_list.tail.value}")
-# new_list.remove_node(new_list.tail)
-# print("list after de-tail-ation:")
-# new_list.print_list()
-# print(f"head: {new_list.head.value}")
-# print(f"tail: {new_list.tail.value}")
-# node_to_remove = new_list.find_node_with_value(4)
-# if node_to_remove:
-#     new_list.remove_node(node_to_remove)
-# print("list after removal from middle:")
-# new_list.print_list()
