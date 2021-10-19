@@ -40,10 +40,6 @@ class DoubleLinkedList:
             prev_node.next = next_node
             next_node.previous = prev_node
 
-    # def remove_dupes(self):
-    #   # memoize values
-    #   memo = {}
-    #   #
     def find_node_with_value(self, val):
         cur_node = self.head
         while cur_node.value != val and cur_node.next:
@@ -157,5 +153,5 @@ new_list.add_node(10)
 new_list.add_node(2)
 new_list.add_node(1)
 
-new_list.partition(5)
+# new_list.partition(5)
 
