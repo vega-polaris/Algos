@@ -5,10 +5,9 @@ def search(array, n):
     Given a sorted array of ints, return the index at which n is found.
     If it is not found, return -1.
     """
-    # middle = math.floor(len(array) / 2)
     left = 0
-    right = len(array)
-    while left < right:
+    right = len(array) - 1
+    while left <= right:
         middle = math.floor((right + left) / 2)
         if array[middle] > n:
             right = middle - 1
@@ -16,8 +15,8 @@ def search(array, n):
             left = middle + 1
         else:
             return middle
-    if right == left:
-        return right
+    # if right < len(array) - 1 and array[right] == n:
+    #     return right
     return -1
 
 # print("weellllll")
