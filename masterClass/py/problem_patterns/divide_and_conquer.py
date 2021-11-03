@@ -15,8 +15,6 @@ def search(array, n):
             left = middle + 1
         else:
             return middle
-    # if right < len(array) - 1 and array[right] == n:
-    #     return right
     return -1
 
 # print("weellllll")
