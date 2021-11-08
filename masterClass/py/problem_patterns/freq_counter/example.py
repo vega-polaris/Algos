@@ -1,4 +1,5 @@
 import collections
+print(collections.__path__)
 
 """
 This function accepts two arrays. 
