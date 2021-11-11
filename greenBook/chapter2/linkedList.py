@@ -1,3 +1,5 @@
+import math 
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -142,6 +144,39 @@ class DoubleLinkedList:
                 self.move_node_to_end(cur_node)
             cur_node = next_node
         self.print_list()
+    
+    def is_palindrome(self):
+        if self.head is None:
+            return False
+        # count how many nodes from head to tail
+        node_count = 0
+        cur_node = self.head
+        while cur_node:
+            node_count += 1
+            cur_node = getattr(cur_node, "next", None)
+        # find the middle
+        left_idx = math.floor(node_count/2) - 1
+        right_idx = left_idx + 1 if node_count % 2 == 0 else left_idx + 2
+        cur_node = self.head
+        # travel to the middle
+        while cur_node:
+            if left_idx == 0:
+                left_node = cur_node
+            if right_idx == 0:
+                right_node = cur_node
+                break
+            left_idx -= 1
+            right_idx -= 1
+            cur_node = getattr(cur_node, "next", None)
+        # compare two pointers - one going towards the beginning, one towards the end
+
+        while left_node is not None and right_node is not None:
+            if left_node.value != right_node.value:
+                return False
+            left_node = getattr(left_node, "previous", None)
+            right_node = getattr(right_node, "next", None)
+        
+        return True
 
 
 new_list = DoubleLinkedList()
@@ -149,9 +184,9 @@ new_list.add_node(3)
 new_list.add_node(5)
 new_list.add_node(8)
 new_list.add_node(5)
-new_list.add_node(10)
-new_list.add_node(2)
-new_list.add_node(1)
+new_list.add_node(8)
+new_list.add_node(5)
+new_list.add_node(3)
 
 # new_list.partition(5)
-
+print(new_list.is_palindrome())
