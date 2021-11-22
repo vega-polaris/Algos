@@ -57,7 +57,8 @@ class DoubleLinkedList:
         else:
             cur_node = self.head
             while cur_node:
-                print(cur_node.value)
+                visited = getattr(cur_node, "visited", None)
+                print(cur_node.value, visited)
                 cur_node = getattr(cur_node, "next", None)
 
     def remove_dupes_linear_time(self):
@@ -177,6 +178,44 @@ class DoubleLinkedList:
             right_node = getattr(right_node, "next", None)
         
         return True
+    
+    def clean_visited(self):
+        if not self.head:
+            print("list is empty")
+        else:
+            cur_node = self.head
+            while cur_node:
+                visited = getattr(cur_node, "visited", None)
+                if visited:
+                    delattr(cur_node, "visited")
+                    cur_node = getattr(cur_node, "next", None)
+                else:
+                    break
+                
+    def intersection(self, other_head):
+        """
+        Checks if a given linked list intersects with the current one.
+        Input: the head of the other list
+        Output: intersecting node or None
+        """
+        # mark this whole list as visited
+        if not self.head:
+            print("list is empty")
+            return
+        else:
+            cur_node = self.head
+            while cur_node:
+                setattr(cur_node, "visited", True)
+                cur_node = getattr(cur_node, "next", None)
+        
+        cur_node = other_head
+        while cur_node:
+            visited = getattr(cur_node, "visited", None)
+            if visited:
+                self.clean_visited()
+                return cur_node
+            cur_node = getattr(cur_node, "next", None)
+
 
 
 new_list = DoubleLinkedList()
@@ -187,6 +226,3 @@ new_list.add_node(5)
 new_list.add_node(8)
 new_list.add_node(5)
 new_list.add_node(3)
-
-# new_list.partition(5)
-print(new_list.is_palindrome())
