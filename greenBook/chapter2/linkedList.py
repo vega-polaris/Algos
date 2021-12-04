@@ -215,6 +215,26 @@ class DoubleLinkedList:
                 self.clean_visited()
                 return cur_node
             cur_node = getattr(cur_node, "next", None)
+    
+    def has_loop(self):
+        """
+        Checks if given list has a loop in it.
+        """
+        if not self.head:
+            print("list is empty")
+            return
+        else:
+            cur_node = self.head
+            while cur_node:
+                visited = getattr(cur_node, "visited", None)
+                if not visited:
+                    setattr(cur_node, "visited", True)
+                else:
+                    self.clean_visited()
+                    return True
+                cur_node = getattr(cur_node, "next", None)
+        self.clean_visited()
+        return False 
 
 
 
