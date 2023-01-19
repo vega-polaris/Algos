@@ -1,5 +1,4 @@
 import unittest
-from unittest.case import expectedFailure
 
 def anagram_check(string1, string2):
     str_map1 = string_map(string1)
